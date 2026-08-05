@@ -1,0 +1,6 @@
+{
+  "name": "De Wisdom Comprehensive Academy",
+  "description": "Official website for De Wisdom Comprehensive Academy - a clean, modern Nigerian secondary school portal with SPA navigation, admissions, and school news.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

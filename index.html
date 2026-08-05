@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De Wisdom Comprehensive Academy | The Citadel of Academic Excellence</title>
+  
+  <!-- Favicon Configuration -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/School%20Logo.png" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  
+  <!--
+    ====================================================================
+    PROJECT STRUCTURE ASSUMPTIONS:
+    - Main HTML File: /index.html (This single complete file)
+    - Image Directory: /assets/images/
+      Example images to replace:
+      * /assets/images/school-logo.png
+      * /assets/images/school-building.jpg
+      * /assets/images/science-lab.jpg
+      * /assets/images/students-playing.jpg
+      * /assets/images/director.jpg
+      * /assets/images/principal.jpg
+    - CSS Directory: /css/ (If extracting styles externally)
+    - JS Directory: /js/ (If extracting scripts externally)
+    ====================================================================
+  -->
+
+  <!-- INTERNAL STYLESHEET (CSS) -->
+  <style>
+    /* ==========================================================================
+       1. CSS VARIABLES & COLOR SCHEME (Artistic Flair Theme)
+       Primary Color: Navy Blue (#000080)
+       Secondary Color: Light Green (#cbf5dd)
+       ========================================================================== */
+    :root {
+      /* Color Palette */
+      --primary-navy: #000080;
+      --primary-navy-dark: #000055;
+      --secondary-green: #cbf5dd;
+      --secondary-green-dark: #8fe2b0;
+      --accent-emerald: #059669;
+      
+      /* Light Mode Defaults */
+      --bg-body: #ffffff;
+      --bg-card: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --text-main: #1a1a1a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+      
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s ease;
+    }
+
+    /* Dark Mode Theme Overrides */
+    body.dark-mode {
+      --bg-body: #0f172a;
+      --bg-card: #1e293b;
+      --bg-secondary: #334155;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --primary-navy: #1e3a8a;
+      --primary-navy-dark: #0f172a;
+      --secondary-green: #14532d;
+      --secondary-green-dark: #166534;
+      --accent-emerald: #10b981;
+    }
+
+    /* ==========================================================================
+       2. BASE & RESET STYLES
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4, .serif, .brand-title {
+      font-family: 'Georgia', serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION & HEADER
+       ========================================================================== */
+    .header {
+      background-color: #000080; /* Artistic Navy Blue */
+      color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      height: 70px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+
+    .brand-badge {
+      background-color: #cbf5dd;
+      color: #000080;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: #cbf5dd;
+      font-weight: 400;
+      display: block;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* Top Horizontal Menu */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      transition: opacity var(--transition-fast), background-color var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      opacity: 0.8;
+      background-color: rgba(203, 245, 221, 0.2);
+      color: #cbf5dd;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Dark Mode Toggle Button */
+    .theme-toggle-btn {
+      background: transparent;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background-color var(--transition-fast);
+    }
+
+    .theme-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Hamburger Button */
+    .hamburger-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: transparent;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      font-size: 0.95rem;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 20px;
+      transition: background-color var(--transition-fast);
+    }
+
+    .hamburger-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Mobile Navigation Drawer */
+    .mobile-menu {
+      display: none;
+      background-color: #000080;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 1.5rem;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mobile-menu-links .nav-link {
+      display: block;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+    }
+
+    /* ==========================================================================
+       4. FLOATING SOCIAL MEDIA BAR
+       ========================================================================== */
+    .floating-social-bar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: var(--secondary-green);
+      padding: 15px 10px;
+      border-radius: 20px 0 0 20px;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-icon-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #000080;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+      position: relative;
+    }
+
+    .social-icon-btn:hover {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+
+    .social-icon-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* ==========================================================================
+       5. MAIN SPA CONTAINERS & SECTIONS
+       ========================================================================== */
+    .main-content {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    /* Dynamic SPA Section Hiding */
+    .spa-section {
+      display: none;
+      animation: fadeIn 0.35s ease-in-out;
+    }
+
+    .spa-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section Typography & Titles */
+    .section-title-wrap {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      background-color: var(--secondary-green);
+      color: #000080;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ==========================================================================
+       6. HOME SECTION COMPONENTS
+       ========================================================================== */
+    /* Image Slider */
+    .slider-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto 2.5rem auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      position: relative;
+    }
+
+    /* Image Placeholder Visual Box */
+    .slide-image-placeholder {
+      width: 100%;
+      height: 340px;
+      background: linear-gradient(135deg, #000080 0%, #1e3a8a 100%);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .slide-image-placeholder svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+      opacity: 0.85;
+      stroke: #cbf5dd;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* Slider Controls */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 128, 0.75);
+      color: #ffffff;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--transition-fast);
+      z-index: 10;
+    }
+
+    .slider-btn:hover {
+      background: #000080;
+      color: #cbf5dd;
+    }
+
+    .slider-btn.prev { left: 1rem; }
+    .slider-btn.next { right: 1rem; }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background-color var(--transition-fast), width var(--transition-fast);
+    }
+
+    .dot.active {
+      background: #cbf5dd;
+      width: 24px;
+      border-radius: 10px;
+    }
+
+    /* News Cards Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #000080;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      letter-spacing: 0.5px;
+    }
+
+    body.dark-mode .card-tag {
+      color: #8fe2b0;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* History & Mission/Vision */
+    .info-box {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-banner {
+      background: linear-gradient(135deg, #000080 0%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #000080;
+      color: #ffffff;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      padding: 12px 24px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .cta-banner .btn-primary {
+      background-color: #cbf5dd;
+      color: #000080;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--bg-secondary);
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border-color);
+    }
+
+    /* ==========================================================================
+       7. ADMISSION FORM & OTHER FORMS
+       ========================================================================== */
+    .form-card {
+      max-width: 750px;
+      margin: 0 auto;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #000080;
+    }
+
+    body.dark-mode .form-label {
+      color: #8fe2b0;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      transition: border-color var(--transition-fast);
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: #000080;
+    }
+
+    .form-alert {
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1.25rem;
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    .form-alert.success {
+      background-color: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      display: block;
+    }
+
+    .form-alert.error {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+      display: block;
+    }
+
+    /* ==========================================================================
+       9. FOOTER
+       ========================================================================== */
+    .footer {
+      background-color: #000080;
+      color: #ffffff;
+      padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+      margin-top: auto;
+      border-top: 3px solid #cbf5dd;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col h4 {
+      color: #cbf5dd;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      font-family: 'Georgia', serif;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: #cbf5dd;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    /* ==========================================================================
+       10. MEDIA QUERIES (RESPONSIVENESS)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger-btn {
+        display: flex;
+      }
+      .slide-image-placeholder {
+        height: 280px;
+      }
+      .slider-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       NAVIGATION & HEADER BAR
+       ========================================================================== -->
+  <header class="header" style="position: relative;">
+    <div class="nav-container">
+      <!-- School Logo & Title -->
+      <!-- Replace with your image: /assets/images/school-logo.png -->
+      <div class="brand-logo" onclick="navigateTo('home')" style="cursor: pointer;">
+        <img class="school-logo-img" src="images/School%20Logo.png" alt="De Wisdom Comprehensive Academy Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'16\' fill=\'%23cbf5dd\'/><path d=\'M50 15 L20 30 L50 45 L80 30 Z M25 42 L25 65 C25 78 50 85 50 85 C50 85 75 78 75 65 L75 42 L50 55 Z\' fill=\'%23000080\'/></svg>'" style="width: 44px; height: 44px; object-fit: contain; border-radius: 8px; background: #cbf5dd; padding: 2px; border: 1px solid rgba(255, 255, 255, 0.4); flex-shrink: 0;" />
+        <div>
+          <span class="brand-title">De Wisdom Comprehensive Academy</span>
+          <span class="brand-subtitle">The Citadel of Academic Excellence</span>
+        </div>
+      </div>
+
+      <!-- Desktop Top Nav Links -->
+      <ul class="nav-links">
+        <li><a class="nav-link nav-home active" id="nav-home" onclick="navigateTo('home')">Home</a></li>
+        <li><a class="nav-link nav-resources" id="nav-resources" onclick="navigateTo('resources')">Academic Resources</a></li>
+        <li><a class="nav-link nav-admission" id="nav-admission" onclick="navigateTo('admission')">Admission</a></li>
+      </ul>
+
+      <!-- Controls: Dark Mode Toggle & Hamburger Menu -->
+      <div class="nav-controls">
+        <button class="theme-toggle-btn" onclick="toggleDarkMode()" id="themeToggleBtn" title="Toggle Dark/Light Mode">
+          <span id="themeIcon">🌙</span> <span id="themeText" style="display:none;">Dark</span>
+        </button>
+        <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu" title="More Pages & Navigation">
+          ☰ <span style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-left: 2px;">Menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hamburger Dropdown Menu (Contains Admission, About, Contact & All Pages) -->
+    <nav class="mobile-menu" id="mobileMenu" style="position: absolute; top: 100%; left: 0; right: 0; background-color: #000080; border-top: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); z-index: 100;">
+      <ul class="mobile-menu-links">
+        <li><a class="nav-link nav-admission" onclick="navigateTo('admission')">Admission</a></li>
+        <li><a class="nav-link nav-about" onclick="navigateTo('about')">About Us</a></li>
+        <li><a class="nav-link nav-contact" onclick="navigateTo('contact')">Contact</a></li>
+        <li style="border-top: 1px solid rgba(255,255,255,0.15); margin: 0.3rem 0;"></li>
+        <li><a class="nav-link nav-home" onclick="navigateTo('home')">Home</a></li>
+        <li><a class="nav-link nav-news" onclick="navigateTo('news')">News</a></li>
+        <li><a class="nav-link nav-resources" onclick="navigateTo('resources')">Academic Resources</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- ==========================================================================
+       FLOATING SOCIAL MEDIA BAR (Fixed on the right side)
+       ========================================================================== -->
+  <aside class="floating-social-bar" aria-label="Social Media Links">
+    <!-- Facebook Placeholder Link -->
+    <a href="https://facebook.com" target="_blank" rel="noopener" class="social-icon-btn" title="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <!-- WhatsApp Placeholder Link -->
+    <a href="https://wa.me/2348100453114" target="_blank" rel="noopener" class="social-icon-btn" title="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-0.999 3.648 3.742-.981z"/></svg>
+    </a>
+    <!-- Instagram Placeholder Link -->
+    <a href="https://instagram.com" target="_blank" rel="noopener" class="social-icon-btn" title="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </aside>
+
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER (SPA Dynamic Sections)
+       ========================================================================== -->
+  <main class="main-content">
+
+    <!-- ------------------------------------------------------------------------
+         1. HOME SECTION
+         ------------------------------------------------------------------------ -->
+    <section id="section-home" class="spa-section active">
+      
+      <!-- IMAGE SLIDER -->
+      <div class="slider-container" id="schoolSlider">
+        <div class="slider-track" id="sliderTrack">
+          
+          <!-- Slide 1: School Building -->
+          <div class="slide" style="position: relative;">
+            <!-- Replace with your image: /assets/images/school-building.jpg -->
+            <img src="images/Entrance.jpg" alt="De Wisdom Academy Main Complex" referrerPolicy="no-referrer" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';" style="width: 100%; height: 450px; object-fit: cover;" />
+            <div class="slide-image-placeholder" style="display: none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.5M4.5 21V10.5"/></svg>
+              <h3>De Wisdom Academy Main Complex</h3>
+              <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.4rem;">[ Image Placeholder: /assets/images/school-building.jpg ]</p>
+            </div>
+            <div class="slide-caption"> Modern Academic Complex & Serene Environment</div>
+          </div>
+
+          <!-- Slide 2: Science Lab -->
+          <div class="slide" style="position: relative;">
+            <!-- Replace with your image: /assets/images/science-lab.jpg -->
+            <img src="images/Laboratory.jpg" alt="Ultra-Modern Science Laboratory" referrerPolicy="no-referrer" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';" style="width: 100%; height: 450px; object-fit: cover;" />
+            <div class="slide-image-placeholder" style="display: none; background: linear-gradient(135deg, #0f172a 0%, #047857 100%);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.037-.501.082-.75.136M9.75 3.104a25.32 25.32 0 016 0M14.25 3.104v5.714a2.25 2.25 0 00.659 1.591L19 14.5M14.25 3.104c.251.037.501.082.75.136M5 14.5a6.75 6.75 0 0014 0m-14 0h14"/></svg>
+              <h3>Ultra-Modern Science Laboratory</h3>
+              <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.4rem;">[ Image Placeholder: /assets/images/science-lab.jpg ]</p>
+            </div>
+            <div class="slide-caption"> Fully Equipped Science & Technology Laboratories</div>
+          </div>
+
+          <!-- Slide 3: Students Playing -->
+          <div class="slide" style="position: relative;">
+            <!-- Replace with your image: /assets/images/students-playing.jpg -->
+            <img src="images/Image.jpg" alt="Sports Arena & Co-Curricular Activities" referrerPolicy="no-referrer" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';" style="width: 100%; height: 450px; object-fit: cover;" />
+            <div class="slide-image-placeholder" style="display: none; background: linear-gradient(135deg, #1e3a8a 0%, #15803d 100%);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-6.75c-.621 0-1.125.504-1.125 1.125V18.75m9 0h-9"/></svg>
+              <h3>Sports Arena & Co-Curricular Activities</h3>
+              <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.4rem;">[ Image Placeholder: /assets/images/students-playing.jpg ]</p>
+            </div>
+            <div class="slide-caption"> Active Student Life, Athletics & Leadership Development</div>
+          </div>
+
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="slider-btn prev" onclick="prevSlide()" aria-label="Previous Slide">❮</button>
+        <button class="slider-btn next" onclick="nextSlide()" aria-label="Next Slide">❯</button>
+
+        <div class="slider-dots">
+          <span class="dot active" onclick="goToSlide(0)"></span>
+          <span class="dot" onclick="goToSlide(1)"></span>
+          <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
+      </div>
+
+      <!-- BRIEF HISTORY & SCHOOL CREST -->
+      <div class="info-box">
+        <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <!-- Replace with your image: /assets/images/school-logo.png -->
+          <div style="flex-shrink: 0; text-align: center;">
+            <img class="school-logo-img" src="images/School%20Logo.png" alt="De Wisdom Comprehensive Academy Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'16\' fill=\'%23000080\'/><path d=\'M50 15 L20 30 L50 45 L80 30 Z M25 42 L25 65 C25 78 50 85 50 85 C50 85 75 78 75 65 L75 42 L50 55 Z\' fill=\'%23cbf5dd\'/></svg>'" style="width: 90px; height: 90px; object-fit: contain; border-radius: 12px; background: #ffffff; padding: 6px; box-shadow: var(--shadow-sm); border: 2px solid var(--secondary-green);" />
+          </div>
+          <div style="flex: 1; min-width: 260px;">
+            <span class="badge-pill">Established 1998</span>
+            <h2 class="card-title" style="font-size: 1.6rem;">Welcome to De Wisdom Comprehensive Academy</h2>
+            <p class="card-text">
+              <strong> De Wisdom Comprehensive Academy</strong> was established with a singular vision: of making quality and effective Western Education accessible, affordable, enticing and learner's friendly. De Wisdom Comprehensive Academy is privileged to be the first private school in Ageva (1998), and <strong>the first educational institution in Zariagi (1999).</strong> Approved for teaching and learning in 2003 by the Kogi State Ministry of Education.<strong> Approved for WAEC and NECO Exams in 2006.</strong>
+            </p>
+            <p class="card-text">
+              Over two decades De Wisdom Comprehensive Academy has progressively metamorphosed:
+             </p>
+             <p class="card-text">-Setting the pace</p>
+             <p class="card-text">-Mentoring</p>
+             <p class="card-text">-Fostering Sports and Culture</p>
+             <p class="card-text">-Embracing Science, technology and Inovation.</p>
+             <p class="card-text">Where we are now is worth reckoning. But where we are going it the most targeted.</p>
+             <p class="card-text"><strong>#BEYOND NO. 1</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION & VISION (Side by Side) -->
+      <div class="grid-2">
+        <div class="card" style="border-left: 4px solid #0b192c;">
+          <span class="card-tag">Our Core Purpose</span>
+          <h3 class="card-title">Our Mission</h3>
+          <p class="card-text">
+             - "Empowering minds with affordable, high-quality education fostering Creativity, Wisdom and Intelligence for a brighter future."
+           </p>
+           <p class="card-text">
+            -"Unlocking human potentials through accessible and innovative learning experiences that cultivate knowledge, common sense and global citizenship."
+           </p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--accent-emerald);">
+          <span class="card-tag">Our Future Outlook</span>
+          <h3 class="card-title">Our Vision</h3>
+          <p class="card-text">
+            -"To become a beacon of excellence in affordable, high-quality education, renowned for cultivating creative, wise and intelligent leaders."
+            </p>
+          <p class="card-text">
+            -"Transforming lives through inclusive, innovative learning environment that nurtures knowledge, common sense and community engagement."
+          </p>
+        </div>
+      </div>
+
+      <!-- SCHOOL NEWS HIGHLIGHTS -->
+      <div style="margin-top: 2rem;">
+        <h3 class="section-title" style="font-size: 1.5rem; text-align: left; margin-bottom: 1rem;">Latest School News</h3>
+        <div class="grid-2">
+          
+          <!-- News Item 1 -->
+          <div class="card">
+            <span class="card-tag">Event Announcement</span>
+            <h4 class="card-title">Speech and Prize Giving Day</h4>
+            <p class="card-text">
+              Our annual Speech and Prize Giving Day holds on <strong>August  1st, 2026</strong>. Join us in celebrating our outstanding scholars and dedicated teachers.
+            </p>
+          </div>
+
+          <!-- News Item 2 -->
+          <div class="card">
+            <span class="card-tag">Academic Calendar</span>
+            <h4 class="card-title">First Term Resumption Date</h4>
+            <p class="card-text">
+              The 2026/2027 Academic Session officially resumes on <strong>Monday, September 7th, 2026</strong>. All students are excepeted to be in school, as academic activities start immediately upon resumption.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- APPLY FOR ADMISSION CALL TO ACTION -->
+      <div class="cta-banner">
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.75rem;">Start Your Academic Journey With Us</h2>
+        <p style="max-width: 600px; margin: 0 auto 1.5rem auto; color: #e2e8f0; font-size: 1rem;">
+          Admissions are now open for JSS 1 - JSS 3 and SSS 1 - SSS 2 for the upcoming academic session. Give your child the gift of quality education.
+        </p>
+        <button class="btn-primary" onclick="navigateTo('admission')">
+          Apply for Admission ➔
+        </button>
+      </div>
+
+    </section>
+
+
+
+    <!-- ------------------------------------------------------------------------
+         3. RESOURCES SECTION
+         ------------------------------------------------------------------------ -->
+    <section id="section-resources" class="spa-section">
+      <div class="section-title-wrap">
+        <span class="badge-pill">E-Library & Study Materials</span>
+        <h2 class="section-title">Academic Resources</h2>
+        <p class="section-subtitle">
+          Access curated lesson notes, WAEC/NECO past questions, scheme of work, and recommended textbooks for all classes.
+        </p>
+      </div>
+
+      <!-- Direct Resource Links -->
+      <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+         <a href="https://fctemis.org/library" target="_blank" rel="noopener" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+          📂 Access Academic Resources 
+        </a>
+        <a href="https://www.waeconline.org.ng/e-learning/" target="_blank" rel="noopener" class="btn-secondary" style="font-size: 1.1rem; padding: 1rem 2rem; background: #cbf5dd; color: #000080; border: 1px solid #000080; font-weight: bold;">
+          📝 Access WAEC Questions From Here
+        </a>
+      </div>
+    </section>
+
+
+    <!-- ------------------------------------------------------------------------
+         4. ADMISSION SECTION
+         ------------------------------------------------------------------------ -->
+    <section id="section-admission" class="spa-section">
+      <div class="section-title-wrap">
+        <span class="badge-pill">Join Our Academy</span>
+        <h2 class="section-title">Admission Application Form</h2>
+        <p class="section-subtitle">
+          Please fill out the form below carefully. Upon submission, our admission team will review your application and reach out via WhatsApp/Phone.
+        </p>
+      </div>
+
+      <div class="form-card">
+        <!-- Success / Error Status Banner -->
+        <div id="formAlert" class="form-alert"></div>
+
+        <form id="admissionForm" onsubmit="handleAdmissionSubmit(event)">
+          <div class="form-grid">
+            
+            <!-- Student Full Name -->
+            <div class="form-group">
+              <label class="form-label" for="studentName">Student Full Name *</label>
+              <input type="text" id="studentName" class="form-input" placeholder="e.g. Chidi Emmanuel Okonkwo" required />
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+              <label class="form-label" for="studentAge">Age (Years) *</label>
+              <input type="number" id="studentAge" class="form-input" min="9" max="20" placeholder="e.g. 12" required />
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+              <label class="form-label" for="studentGender">Gender *</label>
+              <select id="studentGender" class="form-select" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <!-- Class Applying For -->
+            <div class="form-group">
+              <label class="form-label" for="targetClass">Class Applying For *</label>
+              <select id="targetClass" class="form-select" required>
+                <option value="">Select Class</option>
+                <option value="JSS 1">JSS 1</option>
+                <option value="JSS 2">JSS 2</option>
+                <option value="JSS 3">JSS 3</option>
+                <option value="SSS 1 (Science)">SSS 1 </option>
+                <option value="SSS 1 (Science)">SSS 2 (Science) </option>
+                <option value="SSS 1 (Science)">SSS 2 (Arts)</option>
+                <option value="SSS 1 (Science)">SSS 3 (Science) </option>
+                <option value="SSS 1 (Arts)">SSS 3 (Arts)</option>
+              </select>
+            </div>
+
+            <!-- Parent WhatsApp Number -->
+            <div class="form-group">
+              <label class="form-label" for="parentWhatsapp">Parent WhatsApp Number *</label>
+              <input type="tel" id="parentWhatsapp" class="form-input" placeholder="e.g. +234 803 123 4567" required />
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group">
+              <label class="form-label" for="dob">Date of Birth *</label>
+              <input type="date" id="dob" class="form-input" required />
+            </div>
+
+            <!-- Guardian Name -->
+            <div class="form-group">
+              <label class="form-label" for="guardianName">Guardian / Parent Name *</label>
+              <input type="text" id="guardianName" class="form-input" placeholder="e.g. Mr. & Mrs. Okonkwo" required />
+            </div>
+
+            <!-- Previous School -->
+            <div class="form-group">
+              <label class="form-label" for="previousSchool">Previous School Attended *</label>
+              <input type="text" id="previousSchool" class="form-input" placeholder="e.g. St. Jude Primary School" required />
+            </div>
+
+            <!-- Medical Condition -->
+            <div class="form-group full-width">
+              <label class="form-label" for="medicalCondition">Medical Condition / Allergies (If Any)</label>
+              <textarea id="medicalCondition" class="form-textarea" rows="3" placeholder="State any known allergies, asthma, or medical needs (write 'None' if none)"></textarea>
+            </div>
+
+          </div>
+
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <button type="submit" id="submitAdmissionBtn" class="btn-primary" style="width: 100%; justify-content: center;">
+              Submit Application
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+
+    <!-- ------------------------------------------------------------------------
+         5. NEWS SECTION
+         ------------------------------------------------------------------------ -->
+    <section id="section-news" class="spa-section">
+      <div class="section-title-wrap">
+        <span class="badge-pill">School Updates</span>
+        <h2 class="section-title">Latest News & Events</h2>
+        <p class="section-subtitle">
+          Stay informed about upcoming events, academic deadlines, entrance examinations, and co-curricular achievements.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <span class="card-tag">Upcoming Event</span>
+          <h3 class="card-title">Speech and Prize Giving Day</h3>
+          <p class="card-text">
+            Our grand Speech and Prize Giving Day holds on August 1st, 2026. Parents, guardians, and alumni are cordially invited to celebrate excellence with us.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="card-tag">Admissions</span>
+          <h3 class="card-title">Entrance Examination Schedule</h3>
+          <p class="card-text">
+            The 2026/2027 Academic Session commences on September 7th, 2026. All returning students should complete fee clearance prior to resumption.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="card-tag">Admissions</span>
+          <h3 class="card-title">Entrance Examination Schedule</h3>
+          <p class="card-text">
+            Entrance examinations for new candidates take place on the second Saturday of every month at the main school hall starting from 9:00 AM.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="card-tag">Co-Curricular</span>
+          <h3 class="card-title">Annual Inter-House Sports Competition</h3>
+          <p class="card-text">
+            The annual Inter-House Sports festival takes place next term. Red, Blue, Green, and Yellow Houses are actively preparing for athletics and games.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ------------------------------------------------------------------------
+         6. ABOUT SECTION
+         ------------------------------------------------------------------------ -->
+    <section id="section-about" class="spa-section">
+      <div class="section-title-wrap">
+        <span class="badge-pill">Who We Are</span>
+        <h2 class="section-title">About De Wisdom Comprehensive Academy</h2>
+        <p class="section-subtitle">
+          The Citadel of Academic Excellence
+        </p>
+      </div>
+
+      <!-- History, Mission, Vision, Objectives -->
+      <div class="info-box">
+        <h3 class="card-title">Our Institutional History</h3>
+        <p class="card-text" style="margin-bottom: 1.5rem;">
+          <strong>De Wisdom Comprehensive Academy</strong> was established 26th October, 1998 at Ageva Community, in Ageva Local Development Area by Salawu Ajayi David.
+          Zariagi became a target, subsequent upon the original intention, ideals, aims and objectives of making quality and effective Western Education accessible, affordable, enticing and learners' friendly, in educationally less developed communities. Hence the installation of a study centre in 1999, now De Wisdom Comprehensive Academy, Zariagi. De Wisdom is previleged to be the first private school in Ageva (1998), and the first educational institution in Zariagi (1999).
+          Approved for teaching and learning in 2003 by the Kogi State Ministry of education.
+          Approved for WAEC & NECO Exams in 2006. 
+        </p>
+        <p class="card-text">De Wisdom has progressively metamorphosed:</p>
+        <p class="card-text">- setting the pace</p>
+        <p class="card-text">- mentoring </p>
+        <p class="card-text">- fostering sports & culture </p>  
+        <p class="card-text">- embracing science, technology and innovation. </p>
+        <p class="card-text">Where we are now is worthy of reckoning. But where we are going is the most targeted.</p> 
+        <p class="card-text"> <strong>#BEYOND NO. 1 </strong>
+        </p>
+
+        <div class="grid-2" style="margin-top: 1rem;">
+          <div>
+            <h4 style="color: var(--primary-navy); margin-bottom: 0.5rem;">🎯 Our Mission</h4>
+            <p class="card-text">"Empowering minds with affordable, high-quality education fostering Creativity, Wisdom and Intelligence for a brighter future."</p>
+            <p class="card-text">"Unlocking human potentials through accessible and innovative learning experiences that cultivate knowledge, common sense and global citizenship."</p>
+          </div>
+          <div>
+            <h4 style="color: var(--accent-emerald); margin-bottom: 0.5rem;">🌟 Our Vision</h4>
+            <p class="card-text">"To become a beacon of excellence in affordable, high-quality education, renowned for cultivating creative, wise and intelligent leaders."</p>
+            <p class="card-text">"Transforming lives through inclusive, innovative learning environment that nurtures knowledge, common sense and community engagement."</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <h4 style="margin-bottom: 0.75rem;">Our Core Value:</h4>
+          <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
+            <li> <strong> Accessibility: </strong>Affordable education for all.</li>
+            <li> <strong> Excellence: </strong> High-quality academic programs.</li>
+            <li> <strong> Innovation: </strong> Fostering creativity and critical thinking.</li>
+            <li> <strong> Wisdom: </strong>Cultivating discernment and sound judgment.</li>
+            <li> <strong> Intelligence: </strong>Nurturing analytical minds.</li>
+            <li> <strong> Knowledge: </strong> Pursuing academic excellence.</li>
+            <li> <strong> Common Sense: </strong> Applying practical wisdom.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- School Leadership Profiles -->
+      <h3 class="section-title" style="font-size: 1.5rem; text-align: center; margin-bottom: 1.5rem;">School Leadership</h3>
+      <div class="grid-2">
+        
+        <!-- Director Profile -->
+        <div class="card" style="text-align: center;">
+          <!-- Replace with your image: /assets/images/director.jpg -->
+          <div style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem auto; position: relative;">
+            <img src="/assets/images/director.jpg" alt="Chief (Dr.) O. A. Wisdom - Executive Director" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="display: none; width: 100%; height: 100%; object-fit: cover;" />
+            <div style="width: 100%; height: 100%; background: #000080; color: #cbf5dd; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">
+              👨‍💼
+            </div>
+          </div>
+          <h4 class="card-title" style="margin-bottom: 0.2rem;">Mr. Salawu Ajayi David</h4>
+          <span class="card-tag">Founder & Executive Director</span>
+          <p class="card-text" style="margin-top: 0.75rem; font-style: italic;">
+            "Education is the greatest weapon with which we can transform our society and build a bright, self-sustaining future for Nigeria."
+          </p>
+        </div>
+
+        <!-- Principal Profile -->
+        <div class="card" style="text-align: center;">
+          <!-- Replace with your image: /assets/images/principal.jpg -->
+          <div style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem auto; position: relative;">
+            <img src="/assets/images/principal.jpg" alt="Mrs. E. O. Adebayo - School Principal" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="display: none; width: 100%; height: 100%; object-fit: cover;" />
+            <div style="width: 100%; height: 100%; background: var(--accent-emerald); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">
+              👩‍🏫
+            </div>
+          </div>
+          <h4 class="card-title" style="margin-bottom: 0.2rem;">Mr. Simon</h4>
+          <span class="card-tag">School Principal </span>
+          <p class="card-text" style="margin-top: 0.75rem; font-style: italic;">
+            "Every child has unique potential. Our duty is to guide, encourage, and sharpen their talents so they reach the pinnacle of academic success."
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ------------------------------------------------------------------------
+         7. CONTACT SECTION
+         ------------------------------------------------------------------------ -->
+    <section id="section-contact" class="spa-section">
+      <div class="section-title-wrap">
+        <span class="badge-pill">Get In Touch</span>
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">
+          Have questions regarding admissions, fees, or school tours? Reach out to our administrative office.
+        </p>
+      </div>
+
+      <div style="max-width: 700px; margin: 0 auto;">
+        <!-- Contact Information Card -->
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 1.25rem;">School Address & Contacts</h3>
+          
+          <div style="display: flex; flex-direction: column; gap: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+            <div>
+              <strong style="color: var(--text-main); display: block;">📍 Physical Address:</strong>
+              #001 Lugard's Airport Road, Zariagi/ obajana Junction,Lokoja, Kogi State, Nigeria.
+            </div>
+
+            <div>
+              <strong style="color: var(--text-main); display: block;">📞 Phone Numbers:</strong>
+              +234 810 045 3114<br/>
+              +000 000 000 0000
+            </div>
+
+            <div>
+              <strong style="color: var(--text-main); display: block;">✉️ Email Addresses:</strong>
+              salawus109@gmail.com
+            </div>
+
+            <div>
+              <strong style="color: var(--text-main); display: block;">🕒 Administrative Hours:</strong>
+              Monday - Friday: 7:30 AM - 4:00 PM
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <a href="https://wa.me/2348100453114?text=Hello%20De%20Wisdom%20Academy" target="_blank" rel="noopener" class="btn-primary" style="width: 100%; justify-content: center;">
+              💬 Chat Directly on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <!-- Replace with your image: /assets/images/school-logo.png -->
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <img class="school-logo-img" src="images/School%20Logo.png" alt="De Wisdom Comprehensive Academy Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'16\' fill=\'%23cbf5dd\'/><path d=\'M50 15 L20 30 L50 45 L80 30 Z M25 42 L25 65 C25 78 50 85 50 85 C50 85 75 78 75 65 L75 42 L50 55 Z\' fill=\'%23000080\'/></svg>'" style="width: 38px; height: 38px; object-fit: contain; background: #ffffff; border-radius: 6px; padding: 2px; border: 1px solid rgba(255, 255, 255, 0.4);" />
+          <h4 style="margin-bottom: 0; font-size: 1.2rem; color: #ffffff;">De Wisdom Comprehensive Academy</h4>
+        </div>
+        <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6;">
+          The Citadel of Academic Excellence. Shaping future leaders in Nigeria.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Navigation</h4>
+        <ul class="footer-links">
+          <li><a onclick="navigateTo('home')">Home</a></li>
+          <li><a onclick="navigateTo('resources')">Academic Resources</a></li>
+          <li><a onclick="navigateTo('admission')">Admission Form</a></li>
+          <li><a onclick="navigateTo('news')">News & Events</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul class="footer-links">
+          <li><a onclick="navigateTo('news')">News & Events</a></li>
+          <li><a onclick="navigateTo('about')">About Us</a></li>
+          <li><a onclick="navigateTo('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 De Wisdom Comprehensive Academy. All Rights Reserved.
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       JAVASCRIPT (MODULAR SPA CONTROLLER & API INTEGRATIONS)
+       ========================================================================== -->
+  <script type="module">
+    /* ==========================================================================
+       1. GLOBAL CONFIGURATION & API KEYS
+       ========================================================================== */
+    
+    // Auto-detect Google Apps Script Web App URL
+    const VITE_APPS_SCRIPT_URL = (typeof import.meta !== 'undefined' && import.meta && import.meta.env && import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL) ? import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL : "";
+    const MANUAL_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWUrXu1JO8Y1zS53E0afABQdlpAaINkGrFZEmFgMmAXGFTYW_C9Rg9iyhXkepKzu3l/exec"; 
+    const GOOGLE_APPS_SCRIPT_URL = VITE_APPS_SCRIPT_URL || MANUAL_APPS_SCRIPT_URL;
+
+
+    /* ==========================================================================
+       2. SPA NAVIGATION CONTROLLER
+       ========================================================================== */
+    
+    /**
+     * Navigates dynamically between SPA sections without page reloads.
+     * @param {string} sectionId - Target section name ('home', 'learn', 'resources', 'admission', 'news', 'about', 'contact')
+     */
+    function navigateTo(sectionId) {
+      // Hide all SPA sections
+      const sections = document.querySelectorAll('.spa-section');
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      // Show target section
+      const targetSection = document.getElementById('section-' + sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+
+      // Update active state on all matching menu links
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.classList.contains('nav-' + sectionId)) {
+          link.classList.add('active');
+        }
+      });
+
+      // Close mobile dropdown menu if open
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenu) mobileMenu.classList.remove('open');
+
+      // Scroll smoothly back to top of page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.navigateTo = navigateTo;
+
+    /**
+     * Toggles mobile hamburger navigation drawer
+     */
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenu) {
+        mobileMenu.classList.toggle('open');
+      }
+    }
+    window.toggleMobileMenu = toggleMobileMenu;
+
+
+    /* ==========================================================================
+       3. DARK MODE TOGGLE
+       ========================================================================== */
+    
+    /**
+     * Toggles Dark Mode theme on the document body
+     */
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      const themeIcon = document.getElementById('themeIcon');
+      if (themeIcon) {
+        themeIcon.textContent = isDark ? '☀️' : '🌙';
+      }
+    }
+    window.toggleDarkMode = toggleDarkMode;
+
+
+    /* ==========================================================================
+       4. IMAGE SLIDER LOGIC
+       ========================================================================== */
+    let currentSlide = 0;
+    const totalSlides = 3;
+    let sliderInterval = null;
+
+    function updateSlider() {
+      const track = document.getElementById('sliderTrack');
+      const dots = document.querySelectorAll('.dot');
+      if (track) {
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlider();
+    }
+    window.nextSlide = nextSlide;
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    }
+    window.prevSlide = prevSlide;
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlider();
+    }
+    window.goToSlide = goToSlide;
+
+    // Auto-advance slider every 5 seconds
+    function startSliderAutoPlay() {
+      sliderInterval = setInterval(nextSlide, 5000);
+    }
+
+    startSliderAutoPlay();
+
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+
+    /* ==========================================================================
+       5. ADMISSION FORM SUBMISSION (GOOGLE APPS SCRIPT INTEGRATION)
+       ========================================================================== */
+    
+    /**
+     * Handles admission form submission via fetch() to Google Apps Script
+     */
+    async function handleAdmissionSubmit(e) {
+      e.preventDefault();
+      
+      const alertEl = document.getElementById('formAlert');
+      const submitBtn = document.getElementById('submitAdmissionBtn');
+
+      const formData = {
+        studentName: document.getElementById('studentName').value,
+        studentAge: document.getElementById('studentAge').value,
+        studentGender: document.getElementById('studentGender').value,
+        targetClass: document.getElementById('targetClass').value,
+        parentWhatsapp: document.getElementById('parentWhatsapp').value,
+        dob: document.getElementById('dob').value,
+        guardianName: document.getElementById('guardianName').value,
+        previousSchool: document.getElementById('previousSchool').value,
+        medicalCondition: document.getElementById('medicalCondition').value || "None"
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting Application...";
+
+      try {
+        const scriptUrl = GOOGLE_APPS_SCRIPT_URL.trim();
+
+        if (!scriptUrl) {
+          // Simulation / Guidance feedback when Script URL is placeholder
+          setTimeout(() => {
+            alertEl.className = 'form-alert success';
+            alertEl.innerHTML = `
+              <strong>Application Received Successfully! 🎉</strong><br/>
+              Thank you, <strong>${escapeHtml(formData.studentName)}</strong>. Your application for <strong>${escapeHtml(formData.targetClass)}</strong> has been recorded. Our admission officer will reach out to <strong>${escapeHtml(formData.parentWhatsapp)}</strong> on WhatsApp shortly.<br/><br/>
+              <small><em>Note: To connect live Google Sheets storage, insert your Google Apps Script Web App URL at line 833: <code>const GOOGLE_APPS_SCRIPT_URL = "YOUR_SCRIPT_URL";</code></em></small>
+            `;
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Submit Application";
+            document.getElementById('admissionForm').reset();
+          }, 1000);
+          return;
+        }
+
+        // Send data via fetch() POST request
+        const response = await fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors', // standard for Google Apps Script Web App endpoints
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(formData)
+        });
+
+        alertEl.className = 'form-alert success';
+        alertEl.innerHTML = `
+          <strong>Application Submitted! 🎉</strong><br/>
+          Thank you! We have received the admission application for <strong>${escapeHtml(formData.studentName)}</strong>. We will contact you soon on WhatsApp.
+        `;
+        document.getElementById('admissionForm').reset();
+
+      } catch (err) {
+        console.error("Admission Submit Error:", err);
+        alertEl.className = 'form-alert error';
+        alertEl.innerHTML = `
+          <strong>Notice:</strong> Unable to process form submission. Please try again or contact our admission hotline on WhatsApp.
+        `;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Application";
+      }
+    }
+
+    /**
+     * Handles quick contact form inquiry
+     */
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      alert("Thank you for reaching out! Our administrative office has received your message and will respond shortly.");
+      e.target.reset();
+    }
+
+    // Attach all SPA and API event handlers to global window scope
+    window.navigateTo = navigateTo;
+    window.toggleMobileMenu = toggleMobileMenu;
+    window.toggleDarkMode = toggleDarkMode;
+    window.prevSlide = prevSlide;
+    window.nextSlide = nextSlide;
+    window.goToSlide = goToSlide;
+    window.handleAdmissionSubmit = handleAdmissionSubmit;
+    window.handleContactSubmit = handleContactSubmit;
+  </script>
+</body>
+</html>
